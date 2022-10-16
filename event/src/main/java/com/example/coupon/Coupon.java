@@ -1,5 +1,6 @@
 package com.example.coupon;
 
+import com.example.common.Events;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -36,5 +37,6 @@ public class Coupon {
 
     public void use() {
         this.couponStatus = CouponStatus.USED;
+        Events.publish(new CouponUsedEvent(id));
     }
 }

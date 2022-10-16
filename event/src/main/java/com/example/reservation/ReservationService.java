@@ -3,7 +3,7 @@ package com.example.reservation;
 import com.example.coupon.Coupon;
 import com.example.coupon.CouponRepository;
 import com.example.coupon.CouponStatus;
-import com.example.coupon.CouponUseEvent;
+import com.example.coupon.CouponUsedEvent;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
@@ -23,8 +23,8 @@ public class ReservationService {
     }
 
     @EventListener
-    public void accept(final CouponUseEvent couponUseEvent) {
-        Long couponId = couponUseEvent.getCouponId();
+    public void accept(final CouponUsedEvent couponUsedEvent) {
+        Long couponId = couponUsedEvent.getCouponId();
         Reservation reservations = reservationRepository.findByCoupon_IdAndCoupon_CouponStatus(couponId, CouponStatus.USED);
         reservations.use();
     }
