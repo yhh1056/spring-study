@@ -1,0 +1,22 @@
+INFO  22-10-18 14:34:08[main] [LogApplication:logStarting:55] - Starting LogApplication using Java 11.0.10 on yuhyeonhoui-MacBookPro.local with PID 80867 (/Users/yuhyeonho/Desktop/woowa/spring-study/log/build/classes/java/main started by yuhyeonho in /Users/yuhyeonho/Desktop/woowa/spring-study)
+INFO  22-10-18 14:34:08[main] [LogApplication:logStartupProfileInfo:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-18 14:34:09[main] [TomcatWebServer:initialize:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  22-10-18 14:34:09[main] [ServletWebServerApplicationContext:prepareWebApplicationContext:292] - Root WebApplicationContext: initialization completed in 929 ms
+INFO  22-10-18 14:34:09[main] [TomcatWebServer:start:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  22-10-18 14:34:09[main] [LogApplication:logStarted:61] - Started LogApplication in 2.031 seconds (JVM running for 2.912)
+INFO  22-10-18 14:34:21[main] [LogApplication:logStarting:55] - Starting LogApplication using Java 11.0.10 on yuhyeonhoui-MacBookPro.local with PID 80887 (/Users/yuhyeonho/Desktop/woowa/spring-study/log/build/classes/java/main started by yuhyeonho in /Users/yuhyeonho/Desktop/woowa/spring-study)
+INFO  22-10-18 14:34:21[main] [LogApplication:logStartupProfileInfo:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-18 14:34:22[main] [TomcatWebServer:initialize:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  22-10-18 14:34:22[main] [ServletWebServerApplicationContext:prepareWebApplicationContext:292] - Root WebApplicationContext: initialization completed in 984 ms
+INFO  22-10-18 14:34:23[main] [TomcatWebServer:start:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  22-10-18 14:34:23[main] [LogApplication:logStarted:61] - Started LogApplication in 2.134 seconds (JVM running for 2.917)
+INFO  22-10-18 14:34:44[main] [LogApplication:logStarting:55] - Starting LogApplication using Java 11.0.10 on yuhyeonhoui-MacBookPro.local with PID 80913 (/Users/yuhyeonho/Desktop/woowa/spring-study/log/build/classes/java/main started by yuhyeonho in /Users/yuhyeonho/Desktop/woowa/spring-study)
+INFO  22-10-18 14:34:44[main] [LogApplication:logStartupProfileInfo:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-18 14:34:45[main] [TomcatWebServer:initialize:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  22-10-18 14:34:45[main] [ServletWebServerApplicationContext:prepareWebApplicationContext:292] - Root WebApplicationContext: initialization completed in 821 ms
+INFO  22-10-18 14:34:46[main] [TomcatWebServer:start:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  22-10-18 14:34:46[main] [LogApplication:logStarted:61] - Started LogApplication in 1.748 seconds (JVM running for 2.422)
+INFO  22-10-18 14:35:10[http-nio-8080-exec-1] [SimpleLogController:log:14] - hello log!
+INFO  22-10-18 14:35:10[http-nio-8080-exec-1] [SimpleLogController:log:18] - Info
+INFO  22-10-18 14:35:11[http-nio-8080-exec-2] [SimpleLogController:log:14] - hello log!
+INFO  22-10-18 14:35:11[http-nio-8080-exec-2] [SimpleLogController:log:18] - Info
