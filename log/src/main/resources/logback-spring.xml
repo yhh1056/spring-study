@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!--변수 지정 개념이라 생각하면됨-->
+    <!--로그 패턴-->
+    <property name="LOG_PATTERN" value="%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%M:%line] - %msg%n"/>
+    <!--로그 파일 저장 위치-->
+    <property name="LOG_PATH" value="./log/logs"/>
+
+    <!--프로파일마다 다르게 설정을 가져갈 수 있다.-->
+    <springProfile name="default">
+        <!--내가 지정한 설정 파일들을 가져오는 개념-->
+        <include resource="logback/file-error-log.xml"/>
+        <include resource="logback/file-warn-log.xml"/>
+        <include resource="logback/file-info-log.xml"/>
+        <include resource="logback/file-debug-log.xml"/>
+
+        <!--com.example.log 에서 발생하는 로그-->
+        <logger name="com.example.log" level="DEBUG">
+            <appender-ref ref="file-error-log"/>
+            <appender-ref ref="file-warn-log"/>
+            <appender-ref ref="file-info-log"/>
+            <appender-ref ref="file-debug-log"/>
+        </logger>
+
+        <!--org.springframework.boot 에서 발생하는 로그-->
+        <logger name="org.springframework.boot" level="INFO">
+            <appender-ref ref="file-error-log"/>
+            <appender-ref ref="file-warn-log"/>
+            <appender-ref ref="file-info-log"/>
+        </logger>
+    </springProfile>
+
+</configuration>
