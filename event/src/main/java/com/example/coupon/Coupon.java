@@ -39,4 +39,13 @@ public class Coupon {
         this.couponStatus = CouponStatus.USED;
         Events.publish(new CouponUsedEvent(id));
     }
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "id=" + id +
+                ", couponStatus=" + couponStatus +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
