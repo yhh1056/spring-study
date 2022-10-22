@@ -22,9 +22,7 @@ public class TestController {
         Long couponId = couponService.save("hoho coupon");
         Long reservationId = reservationService.save(couponId);
 
-        try {
-            couponService.useImmediately(couponId);
-        } catch (RuntimeException ignored) {}
+        couponService.useImmediately(couponId);
 
         sleep(1000);
         String coupon = couponService.findById(couponId);

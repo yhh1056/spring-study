@@ -7,7 +7,6 @@ import com.example.coupon.CouponStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -31,6 +30,16 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findByCoupon_IdAndCoupon_CouponStatus(couponId, CouponStatus.USED);
         reservation.use();
         log.info("====ReservationService Accept Finish====");
+    }
+
+    @Transactional
+    public void acceptFail(final Long couponId) {
+        log.info("====ReservationService Accept Start====");
+        TransactionLogger.logActualTransactionActive();
+        Reservation reservation = reservationRepository.findByCoupon_IdAndCoupon_CouponStatus(couponId, CouponStatus.USED);
+        reservation.use();
+        log.info("====ReservationService Accept Finish====");
+        throw new RuntimeException();
     }
 
     public String findById(final Long reservationId) {
