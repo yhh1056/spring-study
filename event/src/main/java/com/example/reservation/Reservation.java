@@ -41,4 +41,12 @@ public class Reservation {
     public void use() {
         this.reservationStatus = ReservationStatus.ACCEPT;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", reservationStatus=" + reservationStatus +
+                '}';
+    }
 }

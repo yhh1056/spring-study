@@ -21,9 +21,6 @@ class CouponReservationCouponStatusServiceTest {
     @Autowired
     private ReservationService reservationService;
 
-    @Autowired
-    private ReservationRepository reservationRepository;
-
     @Test
     @DisplayName("쿠폰을 즉시 사용할 경우 예약의 상태가 승인으로 변경된다.")
     void useImmediately() {
@@ -35,8 +32,8 @@ class CouponReservationCouponStatusServiceTest {
         couponService.useImmediately(couponId);
 
         // 쿠폰이 즉시 사용됐다면 예약은 ACCEPT 상태로 변경되어야 한다.
-        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
+        String reservation = reservationService.findById(reservationId);
 
-        assertThat(reservation.getReservationStatus()).isEqualTo(ReservationStatus.ACCEPT);
+        assertThat(reservation.toUpperCase()).contains(ReservationStatus.ACCEPT.toString().toUpperCase());
     }
 }
