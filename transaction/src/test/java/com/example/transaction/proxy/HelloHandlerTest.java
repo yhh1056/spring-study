@@ -3,7 +3,9 @@ package com.example.transaction.proxy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Proxy;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.springframework.aop.ClassFilter;
 import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.NameMatchMethodPointcut;
@@ -62,4 +64,36 @@ class HelloHandlerTest {
         assertThat(proxiedHello.sayHi("hoho")).isEqualTo("HI HOHO");
         assertThat(proxiedHello.sayThankYou("hoho")).isEqualTo("thank you hoho");
     }
+
+    @Test
+    @Disabled
+    void classNamePointcutAdvisor() {
+        NameMatchMethodPointcut methodPointcut = new NameMatchMethodPointcut() {
+            @Override
+            public ClassFilter getClassFilter() {
+                return clazz -> clazz.getSimpleName().startsWith("HelloT");
+            }
+        };
+
+        methodPointcut.setMappedName("SayH");
+
+        ProxyFactoryBean proxyFactoryBean = new ProxyFactoryBean();
+        proxyFactoryBean.setTarget(new HelloToby());
+//        proxyFactoryBean.setTarget(new HelloHoHo());
+        proxyFactoryBean.addAdvisor(new DefaultPointcutAdvisor(methodPointcut, new UppercaseAdvice()));
+
+        HelloToby helloToby = (HelloToby) proxyFactoryBean.getObject();
+        assertThat(helloToby.sayHello("hoho")).isEqualTo("HELLO HOHO");
+        assertThat(helloToby.sayHi("hoho")).isEqualTo("HI HOHO");
+        assertThat(helloToby.sayThankYou("hoho")).isEqualTo("thank you hoho");
+//
+//        HelloHoHo helloHoHo = (HelloHoHo) proxyFactoryBean.getObject();
+//        assertThat(helloHoHo.sayHello("hoho")).isEqualTo("hello hoho");
+//        assertThat(helloHoHo.sayHi("hoho")).isEqualTo("hi hoho");
+//        assertThat(helloHoHo.sayThankYou("hoho")).isEqualTo("thank you hoho");
+    }
+
+    static class HelloToby extends HelloTarget {}
+    static class HelloHoHo extends HelloTarget {}
+
 }
