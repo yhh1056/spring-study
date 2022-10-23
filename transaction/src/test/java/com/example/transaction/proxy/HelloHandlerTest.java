@@ -3,10 +3,10 @@ package com.example.transaction.proxy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Proxy;
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.framework.ProxyFactoryBean;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.aop.support.NameMatchMethodPointcut;
 
 class HelloHandlerTest {
 
@@ -22,7 +22,7 @@ class HelloHandlerTest {
 
         assertThat(hello.sayHello("hoho")).isEqualTo("HELLO HOHO");
         assertThat(hello.sayHi("hoho")).isEqualTo("HI HOHO");
-        assertThat(hello.sayThankYou("hoho")).isEqualTo("THANK YOO HOHO");
+        assertThat(hello.sayThankYou("hoho")).isEqualTo("THANK YOU HOHO");
     }
 
     @Test
@@ -43,6 +43,23 @@ class HelloHandlerTest {
 
         assertThat(proxiedHello.sayHello("hoho")).isEqualTo("HELLO HOHO");
         assertThat(proxiedHello.sayHi("hoho")).isEqualTo("HI HOHO");
-        assertThat(proxiedHello.sayThankYou("hoho")).isEqualTo("THANK YOO HOHO");
+        assertThat(proxiedHello.sayThankYou("hoho")).isEqualTo("THANK YOU HOHO");
+    }
+
+    @Test
+    void pointCutAdvisor() {
+        ProxyFactoryBean factoryBean = new ProxyFactoryBean();
+        factoryBean.setTarget(new HelloTarget());
+
+        NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
+        pointcut.setMappedName("sayH*");
+
+        factoryBean.addAdvisor(new DefaultPointcutAdvisor(pointcut, new UppercaseAdvice()));
+
+        Hello proxiedHello = (Hello) factoryBean.getObject();
+
+        assertThat(proxiedHello.sayHello("hoho")).isEqualTo("HELLO HOHO");
+        assertThat(proxiedHello.sayHi("hoho")).isEqualTo("HI HOHO");
+        assertThat(proxiedHello.sayThankYou("hoho")).isEqualTo("thank you hoho");
     }
 }
