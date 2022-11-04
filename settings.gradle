@@ -1,4 +1,5 @@
 rootProject.name = 'spring-study'
 include 'log'
 include 'event'
+include 'transaction'
 include 'db-replication'

@@ -21,12 +21,12 @@ public class DataSourceRoutingConfig {
     }
 
     @Bean
-    @DependsOn({ "readDataSource","writeDataSource"})
+    @DependsOn({"readDataSource", "writeDataSource"})
     public DataSource targetDataSource(@Qualifier("writeDataSource") final DataSource writeDataSource,
                                        @Qualifier("readDataSource") final DataSource readDataSource) {
         Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put(DataSourceType.READ, readDataSource);
         targetDataSources.put(DataSourceType.WRITE, writeDataSource);
+        targetDataSources.put(DataSourceType.READ, readDataSource);
 
         ReplicationRoutingDataSource routingDataSource = new ReplicationRoutingDataSource();
         routingDataSource.setTargetDataSources(targetDataSources);
